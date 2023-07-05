@@ -19,4 +19,4 @@ app.use('/api', require('./routes/reserva.routes'));
 // TODO: Si la petición no coincide con ninguna de las rutas declaradas, mostrar error 404
 
 // Starting the server
-app.listen(port, () => console.log(`Server on port ${port}`));
+app.listen(port, () => console.log(`Servidor en el puerto ${port}`));
