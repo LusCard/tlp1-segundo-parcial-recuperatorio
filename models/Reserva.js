@@ -16,12 +16,12 @@ const Reserva = sequelize.define(
       type: DataTypes.DATE,
       allowNull: false
     },
-    flight_price: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     flight_date: {
       type: DataTypes.DATE,
+      allowNull: false
+    },
+    flight_price: {
+      type: DataTypes.INTEGER,
       allowNull: false
     }
   },

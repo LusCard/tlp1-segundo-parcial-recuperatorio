@@ -1,5 +1,7 @@
 // Imports
 const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require("morgan");
 const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
@@ -11,7 +13,22 @@ const port = process.env.PORT;
 // Middlewares
 // TODO: Implementar middlewares
 
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(cors());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
+app.use(morgan("dev"));
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 sequelize.authenticate() 
     .then(()=>{
@@ -20,9 +37,9 @@ sequelize.authenticate()
     .catch((error) => console.log('Error al conectar a base de datos', error));
 
 // Routes
-app.use('/api', require('./routes/reserva.routes'));
+app.use('/', require('./routes/reserva.routes'));
 
 // TODO: Si la petición no coincide con ninguna de las rutas declaradas, mostrar error 404
 
 // Starting the server
-app.listen(port, () => console.log(`Servidor en el puerto ${port}`));
+app.listen(port, () => console.log(`Servidor en http://localhost:${process.env.PORT}`));
