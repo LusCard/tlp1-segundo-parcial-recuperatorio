@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Recuperatorio de segundo parcial de programacion",
   "main": "app.js",
-  "scripts": {},
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
   "keywords": [],
   "author": "luscard",
   "license": "ISC",
