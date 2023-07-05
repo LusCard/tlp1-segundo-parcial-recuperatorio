@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
 dotenv.config({path:'.env'});
-
+const {sequelize}= require('./database');
 const app = express();
 
 const port = process.env.PORT;
@@ -12,6 +12,12 @@ const port = process.env.PORT;
 // TODO: Implementar middlewares
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+sequelize.authenticate() 
+    .then(()=>{
+        console.log('Se ha conectado la base de datos!')
+    })
+    .catch((error) => console.log('Error al conectar a base de datos', error));
 
 // Routes
 app.use('/api', require('./routes/reserva.routes'));
